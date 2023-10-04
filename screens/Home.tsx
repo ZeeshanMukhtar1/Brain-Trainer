@@ -2,9 +2,11 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Title from '../components/Title';
 
-export default function Home() {
+import {NavigationProp} from '@react-navigation/native';
+
+export default function Home({navigation}: {navigation: NavigationProp<any>}) {
   return (
-    <View>
+    <View style={styles.container}>
       <Title />
       <View style={styles.bannerContainer}>
         <Image
@@ -15,8 +17,12 @@ export default function Home() {
           resizeMode="contain"
         />
       </View>
-      <TouchableOpacity>
-        <Text>Start!</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('Quiz');
+        }}>
+        <Text style={styles.buttonText}>Start!</Text>
       </TouchableOpacity>
     </View>
   );
@@ -30,5 +36,24 @@ const styles = StyleSheet.create({
   bannerContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
+  },
+  container: {
+    paddingTop: 40,
+    paddingHorizontal: 20,
+    height: '100%',
+  },
+  button: {
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#1A759F',
+    padding: 16,
+    borderRadius: 16,
+    marginBottom: 30,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '600',
   },
 });

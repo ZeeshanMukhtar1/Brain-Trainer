@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-export default function Quiz() {
+export default function Quiz({navigation}: {navigation: any}) {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -33,6 +33,12 @@ export default function Quiz() {
         </TouchableOpacity>
         <TouchableOpacity>
           <Text>Next</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Results');
+          }}>
+          <Text>End</Text>
         </TouchableOpacity>
       </View>
     </View>
