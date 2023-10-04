@@ -11,34 +11,35 @@ export default function Quiz({navigation}: {navigation: any}) {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text>Question 1</Text>
+        <Text style={styles.Question}> Q : Question 1</Text>
       </View>
       <View style={styles.options}>
-        <TouchableOpacity>
-          <Text>Answer 1</Text>
+        <TouchableOpacity style={styles.optionButton}>
+          <Text style={styles.option}>Answer 1</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Answer 2</Text>
+        <TouchableOpacity style={styles.optionButton}>
+          <Text style={styles.option}>Answer 2</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Answer 3</Text>
+        <TouchableOpacity style={styles.optionButton}>
+          <Text style={styles.option}>Answer 3</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Answer 4</Text>
+        <TouchableOpacity style={styles.optionButton}>
+          <Text style={styles.option}>Answer 4</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottom}>
-        <TouchableOpacity>
-          <Text>Skip</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Skip</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Next</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={styles.button}
           onPress={() => {
             navigation.navigate('Results');
           }}>
-          <Text>End</Text>
+          <Text style={styles.buttonText}>End</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -82,10 +83,10 @@ const styles = StyleSheet.create({
   },
   option: {
     fontSize: 18,
-    fontWeight: '500',
     color: 'white',
+    fontWeight: '400',
   },
-  optionButtom: {
+  optionButton: {
     paddingVertical: 12,
     marginVertical: 6,
     backgroundColor: '#34A0A4',
@@ -94,5 +95,9 @@ const styles = StyleSheet.create({
   },
   parent: {
     height: '100%',
+  },
+
+  Question: {
+    fontSize: 28,
   },
 });
