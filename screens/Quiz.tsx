@@ -31,7 +31,7 @@ export default function Quiz({navigation}: {navigation: any}) {
       'https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple&encode=url3986';
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.results[0]);
+    // console.log(data.results[0]);
     setQuestions(data.results);
     setOptions(GenerateOptionsandShuffle(data.results[0]));
   };
@@ -42,34 +42,46 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   // Generate options and shuffle them
   const GenerateOptionsandShuffle = (_question: Question) => {
-    let _options = [..._question.incorrect_answers];
-    _options.push(_question.correct_answer);
-    console.log('encoded shuffled options', _options); // Log before shuffling
+    let _options = [..._question.incorrect_answers, _question.correct_answer];
     shuffleArray(_options);
     setOptions(_options);
-    console.log('decoded shuffled options', _options); // Log after shuffling
     return _options;
   };
 
   const SkipQuestion = () => {
-    if (currentQuestion !== 9) {
-      setCurrentQuestion(currentQuestion + 1);
+    if (currentQuestion !== questions.length - 1) {
       GenerateOptionsandShuffle(questions[currentQuestion + 1]);
+      setCurrentQuestion(currentQuestion + 1);
       setAnswered(false); // Reset answered status for the next question
     }
   };
 
   const handleSelectedOption = (option: string) => {
     if (!answered) {
-      setAnswered(true); // Prevent selecting multiple options for the same question
-      if (
-        option === decodeURIComponent(questions[currentQuestion].correct_answer)
-      ) {
+      setAnswered(true);
+      const decodedSelectedOption = decodeURIComponent(option);
+      const decodedCorrectAnswer = decodeURIComponent(
+        questions[currentQuestion].correct_answer,
+      );
+
+      if (decodedSelectedOption === decodedCorrectAnswer) {
         console.log('Correct answer');
-        setScore(score + 10); // Increment the score for a correct answer
+        setScore(score + 10);
       } else {
         console.log('Wrong answer');
       }
+
+      // Skip to the next question
+      setTimeout(() => {
+        if (currentQuestion !== questions.length - 1) {
+          GenerateOptionsandShuffle(questions[currentQuestion + 1]);
+          setCurrentQuestion(currentQuestion + 1);
+        } else {
+          console.log('Total Scores:', score); // Log the total score
+          navigation.navigate('Results', {score: score});
+        }
+        setAnswered(false);
+      }, 1000);
     }
   };
 
@@ -81,59 +93,40 @@ export default function Quiz({navigation}: {navigation: any}) {
           {/* Question section */}
           <View style={styles.top}>
             <Text style={styles.question}>
-              {/* Decoding fetched string */}
-              Q: {decodeURIComponent(questions[currentQuestion].question)}
+              Q{currentQuestion + 1}:{' '}
+              {decodeURIComponent(questions[currentQuestion].question)}
             </Text>
           </View>
           {/* Options section */}
           <View style={styles.options}>
-            {questions[currentQuestion].incorrect_answers.map(
-              (option, index) => (
-                <TouchableOpacity
-                  onPress={() => handleSelectedOption(option)}
-                  key={index}
-                  style={styles.optionButton}>
-                  <Text style={styles.option}>
-                    {decodeURIComponent(option)}
-                  </Text>
-                </TouchableOpacity>
-              ),
-            )}
-            <TouchableOpacity
-              onPress={() =>
-                handleSelectedOption(
-                  decodeURIComponent(questions[currentQuestion].correct_answer),
-                )
-              }
-              style={styles.optionButton}>
-              <Text style={styles.option}>
-                {decodeURIComponent(questions[currentQuestion].correct_answer)}
-              </Text>
-            </TouchableOpacity>
+            {options.map((option, index) => (
+              <TouchableOpacity
+                onPress={() => handleSelectedOption(option)}
+                key={index}
+                style={styles.optionButton}>
+                <Text style={styles.option}>{decodeURIComponent(option)}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
           {/* Bottom buttons */}
           <View style={styles.bottom}>
             <TouchableOpacity onPress={SkipQuestion} style={styles.button}>
               <Text style={styles.buttonText}>Skip</Text>
             </TouchableOpacity>
-            {currentQuestion !== 9 && (
+            {currentQuestion !== questions.length - 1 ? (
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
-                  setCurrentQuestion(currentQuestion + 1);
                   GenerateOptionsandShuffle(questions[currentQuestion + 1]);
-                  setAnswered(false); // Reset answered status for the next question
+                  setCurrentQuestion(currentQuestion + 1);
+                  setAnswered(false);
                 }}>
                 <Text style={styles.buttonText}>Next</Text>
               </TouchableOpacity>
-            )}
-            {currentQuestion === 9 && (
+            ) : (
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => {
-                  console.log('Total Scores:', score); // Log the total score
-                  navigation.navigate('Results', {score: score});
-                }}>
+                onPress={() => navigation.navigate('Results', {score: score})}>
                 <Text style={styles.buttonText}>Show Results</Text>
               </TouchableOpacity>
             )}
