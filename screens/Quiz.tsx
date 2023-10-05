@@ -132,7 +132,7 @@ export default function Quiz({navigation}: {navigation: any}) {
                 style={styles.button}
                 onPress={() => {
                   console.log('Total Scores:', score); // Log the total score
-                  navigation.navigate('Results', {questions, score});
+                  navigation.navigate('Results', {score: score});
                 }}>
                 <Text style={styles.buttonText}>Show Results</Text>
               </TouchableOpacity>

@@ -1,7 +1,14 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {useRoute} from '@react-navigation/native';
 
 export default function Results({navigation}: {navigation: any}) {
+  // Access the params object
+  const params = useRoute().params as {score: number}; // Use type assertion
+
+  // Extract the score from the params object
+  const score = params?.score || 0;
+
   return (
     <View>
       <View>
@@ -15,6 +22,10 @@ export default function Results({navigation}: {navigation: any}) {
           style={styles.banner}
           resizeMode="contain"
         />
+        <View>
+          {/* Display the score using a Text component */}
+          <Text>Score: {score}</Text>
+        </View>
       </View>
 
       <View>
