@@ -1,17 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-
-// Using an algorithm to shuffle the options
-// Algorithm source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-// Credit: Durstenfeld shuffle,
-const shuffleArray = (array: any[]) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-};
+import {fetchQuizData} from '../network/QuizApi';
+import {
+  shuffleArray,
+  handleSkipQuestion,
+  handleSelectedOption,
+} from '../utils/quizUtils';
 
 interface Question {
   question: string;
@@ -26,21 +20,22 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
 
+  // Function to fetch quiz data
   const getQuiz = async () => {
-    const url =
-      'https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple&encode=url3986';
-    const res = await fetch(url);
-    const data = await res.json();
-    // console.log(data.results[0]);
-    setQuestions(data.results);
-    setOptions(GenerateOptionsandShuffle(data.results[0]));
+    try {
+      const quizData = await fetchQuizData();
+      setQuestions(quizData);
+      setOptions(GenerateOptionsandShuffle(quizData[0]));
+    } catch (error) {
+      console.error('Error fetching quiz data:', error);
+    }
   };
 
   useEffect(() => {
     getQuiz();
   }, []);
 
-  // Generate options and shuffle them
+  // Function to generate options and shuffle them
   const GenerateOptionsandShuffle = (_question: Question) => {
     let _options = [..._question.incorrect_answers, _question.correct_answer];
     shuffleArray(_options);
@@ -48,67 +43,53 @@ export default function Quiz({navigation}: {navigation: any}) {
     return _options;
   };
 
+  // Function to skip a question
   const SkipQuestion = () => {
-    if (currentQuestion !== questions.length - 1) {
-      GenerateOptionsandShuffle(questions[currentQuestion + 1]);
-      setCurrentQuestion(currentQuestion + 1);
-      setAnswered(false); // Reset answered status for the next question
-    }
+    handleSkipQuestion(
+      currentQuestion,
+      questions,
+      setCurrentQuestion,
+      setAnswered,
+    );
   };
 
-  const handleSelectedOption = (option: string) => {
-    if (!answered) {
-      setAnswered(true);
-      const decodedSelectedOption = decodeURIComponent(option);
-      const decodedCorrectAnswer = decodeURIComponent(
-        questions[currentQuestion].correct_answer,
-      );
-
-      if (decodedSelectedOption === decodedCorrectAnswer) {
-        console.log('Correct answer');
-        setScore(score + 10);
-      } else {
-        console.log('Wrong answer');
-      }
-
-      // Skip to the next question
-      setTimeout(() => {
-        if (currentQuestion !== questions.length - 1) {
-          GenerateOptionsandShuffle(questions[currentQuestion + 1]);
-          setCurrentQuestion(currentQuestion + 1);
-        } else {
-          console.log('Total Scores:', score); // Log the total score
-          navigation.navigate('Results', {score: score});
-        }
-        setAnswered(false);
-      }, 1000);
-    }
+  // Function to handle option selection
+  const handleOptionSelection = (option: string) => {
+    handleSelectedOption(
+      option,
+      answered,
+      setAnswered,
+      questions,
+      currentQuestion,
+      setCurrentQuestion,
+      setScore,
+      score,
+      navigation,
+    );
   };
 
   return (
     <View style={styles.container}>
-      {/* Check if questions are available */}
       {questions.length > 0 ? (
         <View style={styles.parent}>
-          {/* Question section */}
           <View style={styles.top}>
+            {/* Display the current question */}
             <Text style={styles.question}>
               Q{currentQuestion + 1}:{' '}
               {decodeURIComponent(questions[currentQuestion].question)}
             </Text>
           </View>
-          {/* Options section */}
           <View style={styles.options}>
+            {/* Display answer options */}
             {options.map((option, index) => (
               <TouchableOpacity
-                onPress={() => handleSelectedOption(option)}
+                onPress={() => handleOptionSelection(option)}
                 key={index}
                 style={styles.optionButton}>
                 <Text style={styles.option}>{decodeURIComponent(option)}</Text>
               </TouchableOpacity>
             ))}
           </View>
-          {/* Bottom buttons */}
           <View style={styles.bottom}>
             <TouchableOpacity onPress={SkipQuestion} style={styles.button}>
               <Text style={styles.buttonText}>Skip</Text>
@@ -133,7 +114,6 @@ export default function Quiz({navigation}: {navigation: any}) {
           </View>
         </View>
       ) : (
-        // Displayed when there are no questions
         <View style={styles.noQuestionsContainer}>
           <Text style={styles.noQuestionsText}>
             No questions available. Please try again later.
