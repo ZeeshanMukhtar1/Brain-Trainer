@@ -30,10 +30,11 @@ export default function Results({navigation}: {navigation: any}) {
 
       <View>
         <TouchableOpacity
+          style={styles.button}
           onPress={() => {
             navigation.navigate('Home');
           }}>
-          <Text>Home</Text>
+          <Text style={{color: '#fff', fontSize: 20}}>Home</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -48,5 +49,14 @@ const styles = StyleSheet.create({
   bannerContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    backgroundColor: '#1A759F',
+    padding: 12,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    alignItems: 'center',
+    maxWidth: '25%',
+    alignSelf: 'center',
   },
 });
