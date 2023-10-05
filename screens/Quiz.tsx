@@ -111,7 +111,7 @@ export default function Quiz({navigation}: {navigation: any}) {
             autoPlay
             loop
           />
-          <Text style={{fontSize: 20}}>Loading...</Text>
+          <Text style={{fontSize: 20, color: '#000'}}>Loading...</Text>
         </View>
       ) : questions.length > 0 ? ( // Check if questions are available
         <View style={styles.parent}>
@@ -200,7 +200,9 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   question: {
-    fontSize: 28,
+    fontSize: 22,
+    color: '#000',
+    textAlign: 'justify',
   },
   option: {
     fontSize: 18,
