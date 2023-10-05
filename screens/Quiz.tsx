@@ -28,7 +28,6 @@ export default function Quiz({navigation}: {navigation: any}) {
       setLoading(true); // Set loading to true while fetching data
       const quizData = await fetchQuizData();
       setQuestions(quizData);
-      setOptions(GenerateOptionsandShuffle(quizData[0]));
       setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
       console.error('Error fetching quiz data:', error);
@@ -41,21 +40,26 @@ export default function Quiz({navigation}: {navigation: any}) {
   }, []);
 
   // Function to generate options and shuffle them
-  const GenerateOptionsandShuffle = (_question: Question) => {
-    let _options = [..._question.incorrect_answers, _question.correct_answer];
-    shuffleArray(_options);
-    setOptions(_options);
-    return _options;
+  const generateOptionsAndShuffle = () => {
+    if (questions.length > 0) {
+      let _options = [
+        ...questions[currentQuestion].incorrect_answers,
+        questions[currentQuestion].correct_answer,
+      ];
+      shuffleArray(_options);
+      setOptions(_options);
+    }
   };
 
   // Function to skip a question
-  const SkipQuestion = () => {
+  const skipQuestion = () => {
     handleSkipQuestion(
       currentQuestion,
       questions,
       setCurrentQuestion,
       setAnswered,
     );
+    setCurrentQuestion(currentQuestion + 1); // Manually move to the next question
   };
 
   // Function to handle option selection
@@ -73,6 +77,27 @@ export default function Quiz({navigation}: {navigation: any}) {
     );
   };
 
+  // Load options when the current question changes
+  useEffect(() => {
+    generateOptionsAndShuffle();
+  }, [currentQuestion]);
+
+  // Function to move to the next question
+  const moveToNextQuestion = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setAnswered(false);
+    } else {
+      // Navigate to results when all questions are answered
+      navigation.navigate('Results', {score: score});
+    }
+  };
+
+  // Initialize options for the first question
+  useEffect(() => {
+    generateOptionsAndShuffle();
+  }, [questions]);
+
   return (
     <View style={styles.container}>
       {loading ? ( // Check if loading is true
@@ -86,7 +111,6 @@ export default function Quiz({navigation}: {navigation: any}) {
             autoPlay
             loop
           />
-
           <Text style={{fontSize: 20}}>Loading...</Text>
         </View>
       ) : questions.length > 0 ? ( // Check if questions are available
@@ -104,32 +128,22 @@ export default function Quiz({navigation}: {navigation: any}) {
               <TouchableOpacity
                 onPress={() => handleOptionSelection(option)}
                 key={index}
-                style={styles.optionButton}>
+                style={styles.optionButton}
+                disabled={answered}>
                 <Text style={styles.option}>{decodeURIComponent(option)}</Text>
               </TouchableOpacity>
             ))}
           </View>
           <View style={styles.bottom}>
-            <TouchableOpacity onPress={SkipQuestion} style={styles.button}>
+            <TouchableOpacity onPress={skipQuestion} style={styles.button}>
               <Text style={styles.buttonText}>Skip</Text>
             </TouchableOpacity>
-            {currentQuestion !== questions.length - 1 ? (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  GenerateOptionsandShuffle(questions[currentQuestion + 1]);
-                  setCurrentQuestion(currentQuestion + 1);
-                  setAnswered(false);
-                }}>
-                <Text style={styles.buttonText}>Next</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Results', {score: score})}>
-                <Text style={styles.buttonText}>Show Results</Text>
-              </TouchableOpacity>
-            )}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={moveToNextQuestion}
+              disabled={answered}>
+              <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
           </View>
         </View>
       ) : (
