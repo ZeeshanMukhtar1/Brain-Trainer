@@ -21,6 +21,10 @@ export default function Results({navigation}: {navigation: any}) {
           style={styles.banner}
           resizeMode="contain"
         />
+        <View>
+          {/* Display the score using a Text component */}
+          <Text style={styles.scoreText}>Total Score: {score}</Text>
+        </View>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -60,5 +64,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: '600',
+  },
+  scoreText: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 20,
   },
 });
