@@ -6,6 +6,7 @@ import {
   handleSkipQuestion,
   handleSelectedOption,
 } from '../utils/quizUtils';
+import LottieView from 'lottie-react-native'; // Import LottieView
 
 interface Question {
   question: string;
@@ -19,15 +20,19 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [options, setOptions] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
+  const [loading, setLoading] = useState(true); // Loading state
 
   // Function to fetch quiz data
   const getQuiz = async () => {
     try {
+      setLoading(true); // Set loading to true while fetching data
       const quizData = await fetchQuizData();
       setQuestions(quizData);
       setOptions(GenerateOptionsandShuffle(quizData[0]));
+      setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
       console.error('Error fetching quiz data:', error);
+      setLoading(false); // Set loading to false on error
     }
   };
 
@@ -70,17 +75,31 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   return (
     <View style={styles.container}>
-      {questions.length > 0 ? (
+      {loading ? ( // Check if loading is true
+        <View style={styles.loadingContainer}>
+          <LottieView
+            style={{
+              width: 300,
+              height: 300,
+            }}
+            source={require('../assets/loading.json')}
+            autoPlay
+            loop
+          />
+
+          <Text style={{fontSize: 20}}>Loading...</Text>
+        </View>
+      ) : questions.length > 0 ? ( // Check if questions are available
         <View style={styles.parent}>
+          {/* Display the current question */}
           <View style={styles.top}>
-            {/* Display the current question */}
             <Text style={styles.question}>
               Q{currentQuestion + 1}:{' '}
               {decodeURIComponent(questions[currentQuestion].question)}
             </Text>
           </View>
+          {/* Display answer options */}
           <View style={styles.options}>
-            {/* Display answer options */}
             {options.map((option, index) => (
               <TouchableOpacity
                 onPress={() => handleOptionSelection(option)}
@@ -114,7 +133,17 @@ export default function Quiz({navigation}: {navigation: any}) {
           </View>
         </View>
       ) : (
+        // No questions found
         <View style={styles.noQuestionsContainer}>
+          <LottieView
+            style={{
+              width: 200,
+              height: 200,
+            }}
+            source={require('../assets/notfound.json')}
+            autoPlay
+            loop
+          />
           <Text style={styles.noQuestionsText}>
             No questions available. Please try again later.
           </Text>
@@ -182,5 +211,10 @@ const styles = StyleSheet.create({
   noQuestionsText: {
     fontSize: 20,
     textAlign: 'center',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

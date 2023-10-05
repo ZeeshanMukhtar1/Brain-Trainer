@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Title from '../components/Title';
+import LottieView from 'lottie-react-native';
 
 import {NavigationProp} from '@react-navigation/native';
 
@@ -9,12 +10,14 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
     <View style={styles.container}>
       <Title title="Brain Teaser" />
       <View style={styles.bannerContainer}>
-        <Image
-          source={{
-            uri: 'https://cdni.iconscout.com/illustration/premium/thumb/giving-different-feedback-and-review-in-websites-2112230-1779230.png',
+        <LottieView
+          style={{
+            width: 300,
+            height: 300,
           }}
-          style={styles.banner}
-          resizeMode="contain"
+          source={require('../assets/question.json')}
+          autoPlay
+          loop
         />
       </View>
       <TouchableOpacity

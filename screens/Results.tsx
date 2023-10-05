@@ -1,7 +1,8 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import Title from '../components/Title';
+import LottieView from 'lottie-react-native';
 
 export default function Results({navigation}: {navigation: any}) {
   // Access the params object
@@ -10,16 +11,25 @@ export default function Results({navigation}: {navigation: any}) {
   // Extract the score from the params object
   const score = params?.score || 0;
 
+  // Define the animation source based on the score
+  let animationSource = require('../assets/sadblue.json'); // Default to sad animation
+
+  if (score >= 50) {
+    animationSource = require('../assets/price.json'); // Use price animation if score is 50 or above
+  }
+
   return (
     <View style={styles.container}>
       <Title title="Results" />
       <View style={styles.bannerContainer}>
-        <Image
-          source={{
-            uri: 'https://cdni.iconscout.com/illustration/premium/thumb/giving-different-feedback-and-review-in-websites-2112230-1779230.png',
+        <LottieView
+          style={{
+            width: 300,
+            height: 300,
           }}
-          style={styles.banner}
-          resizeMode="contain"
+          source={animationSource} // Use the determined animation source
+          autoPlay
+          loop
         />
         <View>
           {/* Display the score using a Text component */}
