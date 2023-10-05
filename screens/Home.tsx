@@ -7,7 +7,7 @@ import {NavigationProp} from '@react-navigation/native';
 export default function Home({navigation}: {navigation: NavigationProp<any>}) {
   return (
     <View style={styles.container}>
-      <Title />
+      <Title title="Brain Teaser" />
       <View style={styles.bannerContainer}>
         <Image
           source={{

@@ -1,10 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export default function Title() {
+type TitleProps = {
+  title: string;
+};
+
+export default function Title({title}: TitleProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Brain Teaser</Text>
+      <Text style={styles.title}>{title}</Text>
     </View>
   );
 }
