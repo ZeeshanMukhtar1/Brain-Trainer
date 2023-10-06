@@ -2,16 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fetchQuizData} from '../network/QuizApi';
 import {NavigationProp} from '@react-navigation/native';
-
-// Import Vibration from 'react-native'
 import {Vibration} from 'react-native';
-
 import {
   shuffleArray,
   handleSkipQuestion,
   handleSelectedOption,
 } from '../utils/quizUtils';
-import LottieView from 'lottie-react-native'; // Import LottieView
+import LottieView from 'lottie-react-native';
 
 interface Question {
   question: string;
@@ -25,29 +22,26 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [options, setOptions] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
-  const [loading, setLoading] = useState(true); // Loading state
-  //  keeping track of wrong and righht answers
+  const [loading, setLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-
-  // Function to fetch quiz data
-  const getQuiz = async () => {
-    try {
-      setLoading(true); // Set loading to true while fetching data
-      const quizData = await fetchQuizData();
-      setQuestions(quizData);
-      setLoading(false); // Set loading to false after data is fetched
-    } catch (error) {
-      console.error('Error fetching quiz data:', error);
-      setLoading(false); // Set loading to false on error
-    }
-  };
 
   useEffect(() => {
     getQuiz();
   }, []);
 
-  // Function to generate options and shuffle them
+  const getQuiz = async () => {
+    try {
+      setLoading(true);
+      const quizData = await fetchQuizData();
+      setQuestions(quizData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching quiz data:', error);
+      setLoading(false);
+    }
+  };
+
   const generateOptionsAndShuffle = () => {
     if (questions.length > 0) {
       let _options = [
@@ -59,7 +53,6 @@ export default function Quiz({navigation}: {navigation: any}) {
     }
   };
 
-  // Function to skip a question
   const skipQuestion = () => {
     handleSkipQuestion(
       currentQuestion,
@@ -67,10 +60,9 @@ export default function Quiz({navigation}: {navigation: any}) {
       setCurrentQuestion,
       setAnswered,
     );
-    setCurrentQuestion(currentQuestion + 1); // Manually move to the next question
+    setCurrentQuestion(currentQuestion + 1);
   };
 
-  // Function to handle option selection
   const handleOptionSelection = (option: string) => {
     if (!answered) {
       const isOptionCorrect =
@@ -79,7 +71,6 @@ export default function Quiz({navigation}: {navigation: any}) {
       setIsCorrect(isOptionCorrect);
 
       if (!isOptionCorrect) {
-        // Vibrate for 1 second for wrong answer
         Vibration.vibrate(500);
       }
 
@@ -97,7 +88,6 @@ export default function Quiz({navigation}: {navigation: any}) {
     }
   };
 
-  // Load options when the current question changes
   useEffect(() => {
     generateOptionsAndShuffle();
   }, [currentQuestion]);
@@ -107,16 +97,13 @@ export default function Quiz({navigation}: {navigation: any}) {
       setCurrentQuestion(currentQuestion + 1);
       setAnswered(false);
     } else if (questions.length === 0) {
-      // Handle case when no questions are available
       console.error('No questions found.');
       navigation.navigate('Home');
     } else {
-      // Navigate to results when all questions are answered
       navigation.navigate('Results', {score: score});
     }
   };
 
-  // Initialize options for the first question
   useEffect(() => {
     generateOptionsAndShuffle();
   }, [questions]);
@@ -127,11 +114,10 @@ export default function Quiz({navigation}: {navigation: any}) {
         onPress={() => {
           navigation.navigate('Home');
         }}>
-        {/* adding back btn html icon */}
         <Text style={styles.backButton}>&#8592;</Text>
       </TouchableOpacity>
 
-      {loading ? ( // Check if loading is true
+      {loading ? (
         <View style={styles.loadingContainer}>
           <LottieView
             style={{
@@ -144,16 +130,21 @@ export default function Quiz({navigation}: {navigation: any}) {
           />
           <Text style={{fontSize: 20, color: '#000'}}>Loading...</Text>
         </View>
-      ) : questions.length > 0 ? ( // Check if questions are available
+      ) : questions.length > 0 ? (
         <View style={styles.parent}>
-          {/* Display the current question */}
+          {/* Display the current question number and total questions */}
+          <View style={styles.questionCount}>
+            <Text style={styles.questionCountText}>
+              Q:{currentQuestion + 1} of {questions.length}
+            </Text>
+          </View>
+
           <View style={styles.top}>
             <Text style={styles.question}>
-              Q{currentQuestion + 1}:{' '}
               {decodeURIComponent(questions[currentQuestion].question)}
             </Text>
           </View>
-          {/* Display answer options */}
+
           <View style={styles.options}>
             {options.map((option, index) => (
               <TouchableOpacity
@@ -162,7 +153,7 @@ export default function Quiz({navigation}: {navigation: any}) {
                 style={[
                   styles.optionButton,
                   selectedOption === option && {
-                    backgroundColor: isCorrect ? 'cyan' : 'red',
+                    backgroundColor: isCorrect ? '#03C988' : 'red',
                   },
                 ]}
                 disabled={answered}>
@@ -183,7 +174,6 @@ export default function Quiz({navigation}: {navigation: any}) {
           </View>
         </View>
       ) : (
-        // No questions found
         <View style={styles.noQuestionsContainer}>
           <LottieView
             style={{
@@ -208,6 +198,35 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
     height: '100%',
+  },
+  backButton: {
+    fontSize: 20,
+    color: '#000',
+    textAlign: 'left',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  parent: {
+    height: '100%',
+  },
+  questionCount: {
+    backgroundColor: '#1A759F',
+    borderTopRightRadius: 16,
+    borderBottomRightRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignSelf: 'flex-start',
+    marginBottom: 4,
+  },
+  questionCountText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
   },
   top: {
     marginVertical: 16,
@@ -240,8 +259,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#000',
     textAlign: 'justify',
-    //  removing extra space between lines
-    letterSpacing: -1, // Adjust the letter spacing as needed
+    letterSpacing: -1,
   },
   option: {
     fontSize: 18,
@@ -251,12 +269,9 @@ const styles = StyleSheet.create({
   optionButton: {
     paddingVertical: 12,
     marginVertical: 6,
-    backgroundColor: '#34A0A4',
+    backgroundColor: '#1A759F',
     paddingHorizontal: 12,
     borderRadius: 12,
-  },
-  parent: {
-    height: '100%',
   },
   noQuestionsContainer: {
     flex: 1,
@@ -266,15 +281,5 @@ const styles = StyleSheet.create({
   noQuestionsText: {
     fontSize: 20,
     textAlign: 'center',
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backButton: {
-    fontSize: 20,
-    color: '#000',
-    textAlign: 'left',
   },
 });
