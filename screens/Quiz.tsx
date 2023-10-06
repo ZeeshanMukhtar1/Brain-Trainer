@@ -114,6 +114,14 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        {/* adding back btn html icon */}
+        <Text style={styles.backButton}>&#8592;</Text>
+      </TouchableOpacity>
+
       {loading ? ( // Check if loading is true
         <View style={styles.loadingContainer}>
           <LottieView
@@ -212,6 +220,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 16,
     alignItems: 'center',
+    marginBottom: 15,
   },
   buttonText: {
     fontSize: 18,
@@ -222,6 +231,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#000',
     textAlign: 'justify',
+    //  removing extra space between lines
+    letterSpacing: -1, // Adjust the letter spacing as needed
   },
   option: {
     fontSize: 18,
@@ -251,5 +262,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  backButton: {
+    fontSize: 20,
+    color: '#000',
+    textAlign: 'left',
   },
 });
