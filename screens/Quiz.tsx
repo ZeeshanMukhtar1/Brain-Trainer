@@ -3,6 +3,9 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fetchQuizData} from '../network/QuizApi';
 import {NavigationProp} from '@react-navigation/native';
 
+// Import Vibration from 'react-native'
+import {Vibration} from 'react-native';
+
 import {
   shuffleArray,
   handleSkipQuestion,
@@ -74,6 +77,12 @@ export default function Quiz({navigation}: {navigation: any}) {
         option === questions[currentQuestion].correct_answer;
       setSelectedOption(option);
       setIsCorrect(isOptionCorrect);
+
+      if (!isOptionCorrect) {
+        // Vibrate for 1 second for wrong answer
+        Vibration.vibrate(500);
+      }
+
       handleSelectedOption(
         option,
         answered,
