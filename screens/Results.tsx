@@ -20,6 +20,13 @@ export default function Results({navigation}: {navigation: any}) {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        {/* adding back btn html icon */}
+        <Text style={styles.backButton}>&#8592;</Text>
+      </TouchableOpacity>
       <Title title="Results" />
       <View style={styles.bannerContainer}>
         <LottieView
@@ -80,5 +87,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 20,
     color: '#000',
+  },
+  backButton: {
+    fontSize: 20,
+    color: '#000',
+    textAlign: 'left',
   },
 });
