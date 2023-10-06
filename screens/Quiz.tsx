@@ -23,6 +23,9 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [loading, setLoading] = useState(true); // Loading state
+  //  keeping track of wrong and righht answers
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   // Function to fetch quiz data
   const getQuiz = async () => {
@@ -66,17 +69,23 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   // Function to handle option selection
   const handleOptionSelection = (option: string) => {
-    handleSelectedOption(
-      option,
-      answered,
-      setAnswered,
-      questions,
-      currentQuestion,
-      setCurrentQuestion,
-      setScore,
-      score,
-      navigation,
-    );
+    if (!answered) {
+      const isOptionCorrect =
+        option === questions[currentQuestion].correct_answer;
+      setSelectedOption(option);
+      setIsCorrect(isOptionCorrect);
+      handleSelectedOption(
+        option,
+        answered,
+        setAnswered,
+        questions,
+        currentQuestion,
+        setCurrentQuestion,
+        setScore,
+        score,
+        navigation,
+      );
+    }
   };
 
   // Load options when the current question changes
@@ -133,7 +142,12 @@ export default function Quiz({navigation}: {navigation: any}) {
               <TouchableOpacity
                 onPress={() => handleOptionSelection(option)}
                 key={index}
-                style={styles.optionButton}
+                style={[
+                  styles.optionButton,
+                  selectedOption === option && {
+                    backgroundColor: isCorrect ? 'cyan' : 'red',
+                  },
+                ]}
                 disabled={answered}>
                 <Text style={styles.option}>{decodeURIComponent(option)}</Text>
               </TouchableOpacity>
