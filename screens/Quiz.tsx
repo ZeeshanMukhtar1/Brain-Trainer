@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fetchQuizData} from '../network/QuizApi';
+import {NavigationProp} from '@react-navigation/native';
+
 import {
   shuffleArray,
   handleSkipQuestion,
@@ -82,11 +84,14 @@ export default function Quiz({navigation}: {navigation: any}) {
     generateOptionsAndShuffle();
   }, [currentQuestion]);
 
-  // Function to move to the next question
   const moveToNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setAnswered(false);
+    } else if (questions.length === 0) {
+      // Handle case when no questions are available
+      console.error('No questions found.');
+      navigation.navigate('Home');
     } else {
       // Navigate to results when all questions are answered
       navigation.navigate('Results', {score: score});
