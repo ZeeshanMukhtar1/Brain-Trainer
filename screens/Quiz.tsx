@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 16,
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 45,
   },
   buttonText: {
     fontSize: 18,
