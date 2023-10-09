@@ -2,11 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fetchQuizData} from '../network/QuizApi';
 import {Vibration} from 'react-native';
-import {
-  shuffleArray,
-  handleSkipQuestion,
-  handleSelectedOption,
-} from '../utils/quizUtils';
+import {shuffleArray, handleSelectedOption} from '../utils/quizUtils';
 import LottieView from 'lottie-react-native';
 import {useRoute} from '@react-navigation/native';
 
@@ -59,16 +55,6 @@ export default function Quiz({navigation}: {navigation: any}) {
       shuffleArray(_options);
       setOptions(_options);
     }
-  };
-
-  const skipQuestion = () => {
-    handleSkipQuestion(
-      currentQuestion,
-      questions,
-      setCurrentQuestion,
-      setAnswered,
-    );
-    setCurrentQuestion(currentQuestion + 1);
   };
 
   const handleOptionSelection = (option: string) => {
@@ -170,15 +156,14 @@ export default function Quiz({navigation}: {navigation: any}) {
             ))}
           </View>
           <View style={styles.bottom}>
-            <TouchableOpacity onPress={skipQuestion} style={styles.button}>
-              <Text style={styles.buttonText}>Skip</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={moveToNextQuestion}
-              disabled={answered}>
-              <Text style={styles.buttonText}>Next</Text>
-            </TouchableOpacity>
+            <View style={styles.nextButtonContainer}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={moveToNextQuestion}
+                disabled={answered}>
+                <Text style={styles.buttonText}>Next</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       ) : (
@@ -193,7 +178,7 @@ export default function Quiz({navigation}: {navigation: any}) {
             loop
           />
           <Text style={styles.noQuestionsText}>
-            No questions available. Please try again later.
+            No questions available 😞,Please check your internet connection.
           </Text>
           <TouchableOpacity onPress={getQuiz}>
             <Text
@@ -299,8 +284,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   noQuestionsText: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     color: '#000',
+  },
+  nextButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    marginBottom: 45,
+    marginRight: 20,
   },
 });
