@@ -122,7 +122,9 @@ export default function Quiz({navigation}: {navigation: any}) {
             autoPlay
             loop
           />
-          <Text style={{fontSize: 20, color: '#000'}}>Loading...</Text>
+          <Text style={{fontSize: 13, color: '#000'}}>
+            Loading... Please wait a moment
+          </Text>
         </View>
       ) : questions.length > 0 ? (
         <View style={styles.parent}>
