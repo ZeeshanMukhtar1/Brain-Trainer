@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#1A759F',
-    padding: 16,
+    padding: 10,
     borderRadius: 16,
     marginRight: 10,
   },
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
   },
   startButton: {
