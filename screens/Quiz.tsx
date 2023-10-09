@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fetchQuizData} from '../network/QuizApi';
-import {NavigationProp} from '@react-navigation/native';
 import {Vibration} from 'react-native';
 import {
   shuffleArray,
@@ -9,6 +8,7 @@ import {
   handleSelectedOption,
 } from '../utils/quizUtils';
 import LottieView from 'lottie-react-native';
+import {useRoute} from '@react-navigation/native';
 
 interface Question {
   question: string;
@@ -26,6 +26,8 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
+  const route = useRoute(); // Get the route object
+
   useEffect(() => {
     getQuiz();
   }, []);
@@ -33,8 +35,14 @@ export default function Quiz({navigation}: {navigation: any}) {
   const getQuiz = async () => {
     try {
       setLoading(true);
-      const quizData = await fetchQuizData();
-      setQuestions(quizData);
+      const routeParams = route.params as {difficulty?: string};
+      const difficulty = routeParams?.difficulty;
+      if (difficulty) {
+        const quizData = await fetchQuizData(difficulty);
+        setQuestions(quizData);
+      } else {
+        console.error('Difficulty not provided.');
+      }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching quiz data:', error);
@@ -187,6 +195,18 @@ export default function Quiz({navigation}: {navigation: any}) {
           <Text style={styles.noQuestionsText}>
             No questions available. Please try again later.
           </Text>
+          <TouchableOpacity onPress={getQuiz}>
+            <Text
+              style={{
+                fontSize: 20,
+                color: '#000',
+                textAlign: 'center',
+                marginTop: 40,
+                marginBottom: 20,
+              }}>
+              Refresh 🔃
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -281,5 +301,6 @@ const styles = StyleSheet.create({
   noQuestionsText: {
     fontSize: 20,
     textAlign: 'center',
+    color: '#000',
   },
 });

@@ -1,8 +1,7 @@
 // api/QuizApi.js
 
-export async function fetchQuizData() {
-  const url =
-    'https://opentdb.com/api.php?amount=10&category=18&difficulty=hard&type=multiple&encode=url3986';
+export async function fetchQuizData(difficulty: string) {
+  const url = `https://opentdb.com/api.php?amount=10&category=18&difficulty=${difficulty}&type=multiple&encode=url3986`;
 
   try {
     const res = await fetch(url);
