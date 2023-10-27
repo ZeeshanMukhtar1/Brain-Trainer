@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
     height: '100%',
+    backgroundColor: '#0F172A',
   },
   button: {
     width: '100%',
@@ -86,11 +87,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     marginBottom: 20,
-    color: '#000',
+    color: '#fff',
   },
   backButton: {
     fontSize: 20,
-    color: '#000',
+    color: '#fff',
     textAlign: 'left',
   },
 });
