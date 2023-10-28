@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
     height: '100%',
+    backgroundColor: '#0F172A',
   },
   difficultyButtons: {
     flexDirection: 'row',
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   dificultyText: {
     fontSize: 20,
     fontWeight: '300',
-    color: '#000',
+    color: '#fff',
     textAlign: 'center',
     marginTop: 15,
     marginBottom: 50,
