@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     height: '100%',
     backgroundColor: '#0F172A',
+    fontFamily: 'Lato, Arial, sans-serif',
   },
   difficultyButtons: {
     flexDirection: 'row',
@@ -109,7 +110,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 15,
-    fontWeight: '600',
   },
   startButton: {
     width: '100%',
@@ -122,11 +122,9 @@ const styles = StyleSheet.create({
   startButtonText: {
     color: 'white',
     fontSize: 24,
-    fontWeight: '600',
   },
   dificultyText: {
     fontSize: 20,
-    fontWeight: '300',
     color: '#fff',
     textAlign: 'center',
     marginTop: 15,

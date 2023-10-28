@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     height: '100%',
     backgroundColor: '#0F172A',
+    fontFamily: 'Lato, Arial, sans-serif !important',
   },
   button: {
     width: '100%',
