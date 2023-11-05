@@ -104,6 +104,7 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   return (
     <View style={styles.container}>
+      {/* back btn */}
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');

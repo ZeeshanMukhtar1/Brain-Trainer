@@ -6,8 +6,11 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+// for navitation purpose
+import {useRoute} from '@react-navigation/native';
 
-export default function Info() {
+//  passing navigation as a prop to make use of navagating user to home screen
+export default function Info({navigation}: {navigation: any}) {
   const faqs = [
     {
       question:
@@ -49,6 +52,13 @@ export default function Info() {
 
   return (
     <ScrollView style={styles.container}>
+      {/* back btn */}
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        <Text style={styles.backButton}>&#8592;</Text>
+      </TouchableOpacity>
       <View>
         <Text style={styles.infoTitle}>
           Click on the question to see the answer ✌️
@@ -101,5 +111,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     color: '#fff',
+  },
+  backButton: {
+    fontSize: 33,
+    color: '#fff',
+    textAlign: 'left',
+    marginBottom: 10,
+    marginTop: -20,
   },
 });
