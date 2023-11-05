@@ -22,7 +22,7 @@ export default function Quiz({navigation}: {navigation: any}) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-  const route = useRoute(); // Get the route object
+  const route = useRoute(); // Getting the route object
 
   useEffect(() => {
     getQuiz();
@@ -186,7 +186,7 @@ export default function Quiz({navigation}: {navigation: any}) {
             <Text
               style={{
                 fontSize: 20,
-                color: '#000',
+                color: '#fff',
                 textAlign: 'center',
                 marginTop: 40,
                 marginBottom: 20,
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   noQuestionsText: {
     fontSize: 15,
     textAlign: 'center',
-    color: '#000',
+    color: '#fff',
   },
   nextButtonContainer: {
     position: 'absolute',
