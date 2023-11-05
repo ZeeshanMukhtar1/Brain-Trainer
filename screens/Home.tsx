@@ -26,6 +26,12 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
 
   return (
     <View style={styles.container}>
+      {/* info icon */}
+      <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+        <View style={styles.info}>
+          <Text style={styles.infoSize}>&#8505;&#65039;</Text>
+        </View>
+      </TouchableOpacity>
       <Title title="Brain Teaser" />
       <View style={styles.bannerContainer}>
         <LottieView
@@ -129,5 +135,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
     marginBottom: 50,
+  },
+  info: {
+    position: 'absolute',
+    top: -20,
+    right: -10,
+    backgroundColor: '#0F172A',
+    padding: 10,
+    borderRadius: 16,
+  },
+  infoSize: {
+    fontSize: 20,
+    color: '#fff',
   },
 });
