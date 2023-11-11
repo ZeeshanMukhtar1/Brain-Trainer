@@ -1,79 +1,72 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<h1 align="center" id="title">Brain Train</h1>
 
-# Getting Started
+<p align="center"><img src="https://repository-images.githubusercontent.com/182525249/aadd7a80-54fe-11eb-9872-ccd06b8789b6" alt="project-image"></p>
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+<p align="center">Quiz app for iOS and Android built with React Native, featuring multiple-choice questions, difficulty levels, and vibrate mode for real-time feedback on incorrect answers.</p>
 
-## Step 1: Start the Metro Server
+<h2 align="center">🧐 Features</h2>
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Here are some key features of the project:
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Multiple Choice Questions
+- Difficulty Levels (Easy, Medium, Hard)
+- Vibrate Mode for Real-time Feedback
+- Minimalist Design
+- Dark Mode
+- iOS and Android
+- Faq Section for Common Questions
+- Dynamic Scoreboard
 
-```bash
-# using npm
-npm start
+<h2 align="center">💻 Built with</h2>
 
-# OR using Yarn
-yarn start
-```
+Technologies used in the project:
 
-## Step 2: Start your Application
+- Typescript
+- Javascript
+- Java
+- Ruby
+- Objective-C
+- Saas
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+<p align="center"><img src="https://repository-images.githubusercontent.com/182525249/aadd7a80-54fe-11eb-9872-ccd06b8789b6" alt="project-image"></p>
 
-### For Android
+<h2 align="center">Screenshots</h2>
 
-```bash
-# using npm
-npm run android
+<p align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="./assets/Output/error.png" alt="Error"></td>
+      <td align="center"><img src="./assets/Output/home.png" alt="Home"></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/fail.png" alt="Fail"></td>
+      <td align="center"><img src="assets/Output/pass.png" alt="Pass"></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
+      <td align="center"><img src="assets/Output/mcqs.png" alt="MCQs"></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/faqs.png" alt="FAQs"></td>
+      <!-- Add more rows as needed -->
+    </tr>
+  </table>
+</p>
 
-# OR using Yarn
-yarn android
-```
+<h2 align="center"> Connect with Me 👋</h2>
 
-### For iOS
+[![LinkedIn](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://twitter.com/ZeshanMukhtar01)
+[![Twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/ZeshanMukhtar01)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/zeshanmukhtar01/)
 
-```bash
-# using npm
-npm run ios
+We appreciate your support and hope you enjoy using our quiz app! Thank you for choosing Brain Train.
 
-# OR using Yarn
-yarn ios
-```
+## Acknowledgments
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Thank you for choosing our quiz app. We hope you have a great time testing your knowledge and skills!
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+<h2 align="center">🛡️ License:</h2>
 
-## Step 3: Modifying your App
+This project is licensed under the MIT License.
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
