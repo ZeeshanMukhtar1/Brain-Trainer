@@ -44,7 +44,6 @@ Technologies used in the project:
       <td align="center"><img src="assets/Output/fail.png" alt="Fail"></td>
       <td align="center"><img src="assets/Output/pass.png" alt="Pass"></td>
     </tr>
- 
     <tr>
       <td align="center"><img src="assets/Output/faqs.png" alt="FAQs"></td>
     </tr>
