@@ -5,6 +5,7 @@ import {Vibration} from 'react-native';
 import {shuffleArray, handleSelectedOption} from '../utils/quizUtils';
 import LottieView from 'lottie-react-native';
 import {useRoute} from '@react-navigation/native';
+import BackButton from '../components/Back__btn';
 
 interface Question {
   question: string;
@@ -104,14 +105,7 @@ export default function Quiz({navigation}: {navigation: any}) {
 
   return (
     <View style={styles.container}>
-      {/* back btn */}
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Home');
-        }}>
-        <Text style={styles.backButton}>&#8592;</Text>
-      </TouchableOpacity>
-
+      <BackButton />
       {loading ? (
         <View style={styles.loadingContainer}>
           <LottieView

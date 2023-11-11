@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 // for navitation purpose
 import {useRoute} from '@react-navigation/native';
+import BackButton from '../components/Back__btn';
 
 //  passing navigation as a prop to make use of navagating user to home screen
 export default function Info({navigation}: {navigation: any}) {
@@ -52,13 +53,7 @@ export default function Info({navigation}: {navigation: any}) {
 
   return (
     <ScrollView style={styles.container}>
-      {/* back btn */}
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Home');
-        }}>
-        <Text style={styles.backButton}>&#8592;</Text>
-      </TouchableOpacity>
+      <BackButton />
       <View>
         <Text style={styles.infoTitle}>
           Click on the question to see the answer ✌️
