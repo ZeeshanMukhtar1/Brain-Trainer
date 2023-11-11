@@ -28,8 +28,6 @@ Technologies used in the project:
 - Objective-C
 - Saas
 
-<p align="center"><img src="https://repository-images.githubusercontent.com/182525249/aadd7a80-54fe-11eb-9872-ccd06b8789b6" alt="project-image"></p>
-
 <h2 align="center">Screenshots</h2>
 
 <p align="center">
