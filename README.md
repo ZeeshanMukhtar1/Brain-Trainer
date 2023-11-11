@@ -33,20 +33,20 @@ Technologies used in the project:
 <p align="center">
   <table>
     <tr>
-      <td align="center"><img src="./assets/Output/error.png" alt="Error"></td>
       <td align="center"><img src="./assets/Output/home.png" alt="Home"></td>
+      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
+    </tr>
+       <tr>
+      <td align="center"><img src="./assets/Output/error.png" alt="Error"></td>
+      <td align="center"><img src="assets/Output/mcqs.png" alt="MCQs"></td>
     </tr>
     <tr>
       <td align="center"><img src="assets/Output/fail.png" alt="Fail"></td>
       <td align="center"><img src="assets/Output/pass.png" alt="Pass"></td>
     </tr>
-    <tr>
-      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
-      <td align="center"><img src="assets/Output/mcqs.png" alt="MCQs"></td>
-    </tr>
+ 
     <tr>
       <td align="center"><img src="assets/Output/faqs.png" alt="FAQs"></td>
-      <!-- Add more rows as needed -->
     </tr>
   </table>
 </p>
