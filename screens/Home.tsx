@@ -24,12 +24,30 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
     }
   };
 
+  const handleInfoPress = () => {
+    navigation.navigate('Info');
+  };
+
+  const handleAboutDeveloperPress = () => {
+    navigation.navigate('AboutDeveloper');
+    console.log('About Developer');
+  };
+
   return (
     <View style={styles.container}>
-      {/* info icon */}
-      <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-        <View style={styles.info}>
-          <Text style={styles.infoSize}>&#8505;&#65039;</Text>
+      {/* Info icon */}
+      <TouchableOpacity onPress={handleInfoPress}>
+        <View style={styles.iconContainer}>
+          <Text style={styles.icon}>&#8505;&#65039;</Text>
+        </View>
+      </TouchableOpacity>
+      {/* About Developer icon */}
+      <TouchableOpacity onPress={handleAboutDeveloperPress}>
+        <View style={styles.iconContainerLeft}>
+          <Image
+            source={require('../assets/logo/about-logo.png')}
+            style={styles.logoImage}
+          />
         </View>
       </TouchableOpacity>
       <Title title="Brain Teaser" />
@@ -79,7 +97,6 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   banner: {
     height: 300,
@@ -147,5 +164,31 @@ const styles = StyleSheet.create({
   infoSize: {
     fontSize: 20,
     color: '#fff',
+  },
+  iconContainer: {
+    position: 'absolute',
+    top: -20,
+    right: -10,
+    backgroundColor: 'transparent',
+    padding: 10,
+    borderRadius: 16,
+  },
+  iconContainerLeft: {
+    position: 'absolute',
+    top: -20,
+    left: -10,
+    backgroundColor: 'transparent',
+    padding: 10,
+    borderRadius: 16,
+    marginLeft: 10,
+  },
+  icon: {
+    fontSize: 25,
+    color: '#fff',
+  },
+  logoImage: {
+    width: 35,
+    height: 35,
+    borderRadius: 20,
   },
 });
