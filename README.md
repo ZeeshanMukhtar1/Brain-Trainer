@@ -12,10 +12,13 @@ Here are some key features of the project:
 - Difficulty Levels (Easy, Medium, Hard)
 - Vibrate Mode for Real-time Feedback
 - Minimalist Design
-- Dark Mode
+- eye catching UI
 - iOS and Android
 - Faq Section for Common Questions
 - Dynamic Scoreboard
+- Splash Screen
+- Loading Screen
+- Real time repository statistics
 
 <h2 align="center">💻 Built with</h2>
 
@@ -23,10 +26,14 @@ Technologies used in the project:
 
 - Typescript
 - Javascript
-- Java
-- Ruby
-- Objective-C
-- Saas
+- CSS
+
+Technologies used in the project:
+
+- React Native CLI
+- React Native
+- React Navigation
+- React Native Vibration
 
 <h2 align="center">Screenshots</h2>
 
@@ -54,6 +61,10 @@ Technologies used in the project:
 
   </table>
 </p>
+
+<h2 align="center">Releases 🚀</h2>
+
+- [v1.0.0](https://github.com/ZeeshanMukhtar1/BrainTrain-Native/releases/tag/v1.0.0) - Download apk
 
 <h2 align="center"> Connect with Me 👋</h2>
 
