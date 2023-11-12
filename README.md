@@ -33,20 +33,25 @@ Technologies used in the project:
 <p align="center">
   <table>
     <tr>
+      <td align="center"><img src="./assets/Output/splash.png" alt="splash Scren"></td>
       <td align="center"><img src="./assets/Output/home.png" alt="Home"></td>
-      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
     </tr>
        <tr>
+      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
       <td align="center"><img src="./assets/Output/error.png" alt="Error"></td>
+    </tr>
+    <tr>
       <td align="center"><img src="assets/Output/mcqs.png" alt="MCQs"></td>
-    </tr>
-    <tr>
       <td align="center"><img src="assets/Output/fail.png" alt="Fail"></td>
-      <td align="center"><img src="assets/Output/pass.png" alt="Pass"></td>
     </tr>
     <tr>
+      <td align="center"><img src="assets/Output/pass.png" alt="Pass"></td>
       <td align="center"><img src="assets/Output/faqs.png" alt="FAQs"></td>
     </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/about.png" alt="Pass"></td>
+    </tr>
+
   </table>
 </p>
 
@@ -64,6 +69,6 @@ Thank you for choosing our quiz app. We hope you have a great time testing your 
 
 <h2 align="center">🛡️ License:</h2>
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](/LICENSE).
 
 ---
