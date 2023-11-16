@@ -34,26 +34,6 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
 
   return (
     <View style={styles.container}>
-      {/* Info icon */}
-      <TouchableOpacity onPress={handleInfoPress}>
-        <View style={styles.iconContainer}>
-          <Image
-            source={require('../assets/logo/info-logo.png')}
-            style={styles.logoImage}
-            onProgress={handleInfoPress}
-          />
-        </View>
-      </TouchableOpacity>
-      {/* About Developer icon */}
-      <TouchableOpacity onPress={handleAboutDeveloperPress}>
-        <View style={styles.iconContainerLeft}>
-          <Image
-            source={require('../assets/logo/about-logo.png')}
-            style={styles.logoImage}
-            onProgress={handleAboutDeveloperPress}
-          />
-        </View>
-      </TouchableOpacity>
       <Title title="Brain Teaser" />
       <View style={styles.bannerContainer}>
         <LottieView
