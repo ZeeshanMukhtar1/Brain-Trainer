@@ -6,8 +6,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Quiz from './screens/Quiz';
 import Results from './screens/Results';
-import FAQs from './screens/Info';
-import About from './screens/AboutDeveloper';
+import FAQs from './screens/Faqs';
+import About from './screens/About';
 import SplashScreen from 'react-native-splash-screen';
 
 const Drawer = createDrawerNavigator();
