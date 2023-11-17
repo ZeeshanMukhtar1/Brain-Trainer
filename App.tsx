@@ -25,7 +25,7 @@ export default function App() {
         screenOptions={{
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#1A759F',
+            backgroundColor: '#0F172A',
           },
           headerTitleStyle: {
             color: 'white',
@@ -34,7 +34,7 @@ export default function App() {
             color: 'white',
           },
           drawerStyle: {
-            backgroundColor: '#1A759F',
+            backgroundColor: '#0F172A',
           },
         }}>
         <Drawer.Screen name="Overview" component={MainStackNavigator} />
