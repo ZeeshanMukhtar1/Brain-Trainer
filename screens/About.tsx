@@ -20,6 +20,15 @@ export default function AboutDeveloper() {
       const response = await fetch(
         'https://api.github.com/repos/ZeeshanMukhtar1/BrainTrain-Native',
       );
+
+      if (!response.ok) {
+        // Handle non-successful responses (e.g., 404 Not Found, 500 Internal Server Error)
+        console.error(
+          `Error fetching repository data: ${response.status} - ${response.statusText}`,
+        );
+        throw new Error('Failed to fetch repository data');
+      }
+
       const data: Repo = await response.json();
       setRepo(data);
     } catch (error) {
