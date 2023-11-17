@@ -21,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Overview"
+        initialRouteName="Brain Trainer"
         screenOptions={{
           headerShown: true,
           headerStyle: {
@@ -29,15 +29,19 @@ export default function App() {
           },
           headerTitleStyle: {
             color: 'white',
+            fontFamily: 'Roboto',
           },
           drawerLabelStyle: {
             color: 'white',
+            fontFamily: 'Roboto',
           },
           drawerStyle: {
             backgroundColor: '#0F172A',
           },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
         }}>
-        <Drawer.Screen name="Overview" component={MainStackNavigator} />
+        <Drawer.Screen name="Brain Trainer" component={MainStackNavigator} />
         <Drawer.Screen name="FAQs" component={FAQs} />
         <Drawer.Screen name="About" component={About} />
       </Drawer.Navigator>

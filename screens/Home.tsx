@@ -34,7 +34,6 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
 
   return (
     <View style={styles.container}>
-      <Title title="Brain Teaser" />
       <View style={styles.bannerContainer}>
         <LottieView
           style={{
@@ -134,8 +133,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
     textAlign: 'center',
-    marginTop: 15,
-    marginBottom: 50,
+    marginTop: 85,
   },
   info: {
     position: 'absolute',
