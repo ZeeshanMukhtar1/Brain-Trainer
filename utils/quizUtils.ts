@@ -45,10 +45,10 @@ export const handleSelectedOption = (
     );
 
     if (decodedSelectedOption === decodedCorrectAnswer) {
-      console.log('Correct answer');
+      // console.log('Correct answer');
       setScore(score + 10);
     } else {
-      console.log('Wrong answer');
+      // console.log('Wrong answer');
     }
 
     // Skip to the next question
