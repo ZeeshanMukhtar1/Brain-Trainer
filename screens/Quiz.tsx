@@ -42,7 +42,7 @@ export default function Quiz({navigation}: {navigation: any}) {
       }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching quiz data:', error);
+      // console.error('Error fetching quiz data:', error);
       setLoading(false);
     }
   };
@@ -175,7 +175,7 @@ export default function Quiz({navigation}: {navigation: any}) {
             loop
           />
           <Text style={styles.noQuestionsText}>
-            No questions available 😞,Please check your internet connection.
+            No questions available,Please check your internet connectivityf.
           </Text>
           <TouchableOpacity onPress={getQuiz}>
             <Text
