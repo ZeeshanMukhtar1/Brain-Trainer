@@ -3,7 +3,6 @@ import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import Title from '../components/Title';
 import LottieView from 'lottie-react-native';
-import BackButton from '../components/Back__btn';
 
 export default function Results({navigation}: {navigation: any}) {
   // Access the params object
@@ -16,12 +15,11 @@ export default function Results({navigation}: {navigation: any}) {
   let animationSource = require('../assets/sadblue.json'); // Default to sad animation
 
   if (score >= 50) {
-    animationSource = require('../assets/price.json'); // Use price animation if score is 50 or above
+    animationSource = require('../assets/price.json'); // Usng prize animation if score is 50 or above
   }
 
   return (
     <View style={styles.container}>
-      <BackButton />
       <Title title="Final Results" />
       <View style={styles.bannerContainer}>
         <LottieView
@@ -29,13 +27,19 @@ export default function Results({navigation}: {navigation: any}) {
             width: 300,
             height: 300,
           }}
-          source={animationSource} // Use the determined animation source
+          source={animationSource}
           autoPlay
           loop
         />
         <View>
           {/* Display the score using a Text component */}
-          <Text style={styles.scoreText}>Total Point : {score}</Text>
+          <Text style={styles.scoreText}>Total Point(s) : {score}</Text>
+          {/* Conditional rendering based on the score */}
+          {score < 50 ? (
+            <Text style={styles.resultText}>Better luck next time!</Text>
+          ) : (
+            <Text style={styles.resultText}>Congratulations!</Text>
+          )}
         </View>
       </View>
       <TouchableOpacity
@@ -43,7 +47,7 @@ export default function Results({navigation}: {navigation: any}) {
         onPress={() => {
           navigation.navigate('Home');
         }}>
-        <Text style={styles.buttonText}>Home</Text>
+        <Text style={styles.buttonText}>Try Again</Text>
       </TouchableOpacity>
     </View>
   );
@@ -89,5 +93,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
     textAlign: 'left',
+  },
+  resultText: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 20,
   },
 });

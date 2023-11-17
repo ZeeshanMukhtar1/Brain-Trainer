@@ -13,8 +13,8 @@ const BackButton = () => {
           fontSize: 33,
           color: '#fff',
           textAlign: 'left',
-          marginBottom: 10,
-          marginTop: -20,
+          marginBottom: 40,
+          marginTop: -40,
         }}>
         &#8592;
       </Text>
