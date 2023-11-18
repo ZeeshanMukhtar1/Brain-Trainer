@@ -16,6 +16,16 @@ export default function Feedback() {
   const [featureDescription, setFeatureDescription] = useState('');
 
   const sendFeedback = () => {
+    // Validate if all fields are filled
+    if (!name || !emailAddress || !featureDescription) {
+      Alert.alert(
+        'Validation Error',
+        'Please fill in all the required fields.',
+      );
+      return;
+    }
+
+    // The rest of your code remains unchanged
     const subject = 'Feedback from App User';
     const body = 'Please provide your feedback here.';
 
@@ -39,6 +49,7 @@ export default function Feedback() {
         );
       });
   };
+
   return (
     <Animated.View
       entering={StretchInX}
