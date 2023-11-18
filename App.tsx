@@ -9,6 +9,7 @@ import Results from './screens/Results';
 import FAQs from './screens/Faqs';
 import About from './screens/About';
 import Share from './screens/Share';
+import Feedback from './screens/Feedback';
 import SplashScreen from 'react-native-splash-screen';
 
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,7 @@ export default function App() {
         <Drawer.Screen name="FAQs" component={FAQs} />
         <Drawer.Screen name="About" component={About} />
         <Drawer.Screen name="Share" component={Share} />
+        <Drawer.Screen name="Feedback" component={Feedback} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
