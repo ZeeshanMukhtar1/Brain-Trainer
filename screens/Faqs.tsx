@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 // for navitation purpose
 import {useRoute} from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 
 //  passing navigation as a prop to make use of navagating user to home screen
 export default function Info({navigation}: {navigation: any}) {
@@ -34,9 +35,9 @@ export default function Info({navigation}: {navigation: any}) {
         "Of course! If a question is too tricky or you're unsure about the answer, you can use the 'Next' option to move on to the next one. It's all about having a great experience while enjoying the game.",
     },
     {
-      question: 'Is there a limit to how many questions I can skip?',
+      question: 'I have ideas for new features. How can I suggest them?',
       answer:
-        "No, there's no limit to the number of questions you can skip. Feel free to skip as many questions as you need to keep the game enjoyable for you. It's all about having fun and learning.",
+        'Navigate to the Feedback section in the app to share your ideas with us. We value your input as we work on making the app even better!',
     },
   ];
 
@@ -52,6 +53,15 @@ export default function Info({navigation}: {navigation: any}) {
 
   return (
     <ScrollView style={styles.container}>
+      <View>
+        {/* Animation */}
+        <LottieView
+          style={styles.animation}
+          source={require('../assets//faqs.json')}
+          autoPlay
+          loop
+        />
+      </View>
       <View>
         <Text style={styles.infoTitle}>
           Click on the question to see the answer ✌️
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   question: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'justify',
     marginBottom: 7,
@@ -114,5 +124,13 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 10,
     marginTop: -20,
+  },
+  animation: {
+    width: 350,
+    height: 200,
+    alignContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 10,
+    backgroundColor: 'transparent',
   },
 });
