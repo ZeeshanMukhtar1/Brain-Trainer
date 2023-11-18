@@ -9,6 +9,7 @@ import {
   Linking,
 } from 'react-native';
 import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
+import Toast from 'react-native-toast-message';
 
 export default function Feedback() {
   const [name, setName] = useState('');
@@ -18,10 +19,11 @@ export default function Feedback() {
   const sendFeedback = () => {
     // Validate if all fields are filled
     if (!name || !emailAddress || !featureDescription) {
-      Alert.alert(
-        'Validation Error',
-        'Please fill in all the required fields.',
-      );
+      Toast.show({
+        type: 'error',
+        text1: 'Validation Error',
+        text2: 'Please fill in all the required fields.',
+      });
       return;
     }
 

@@ -11,6 +11,7 @@ import About from './screens/About';
 import Share from './screens/Share';
 import Feedback from './screens/Feedback';
 import SplashScreen from 'react-native-splash-screen';
+import Toast from 'react-native-toast-message';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -49,6 +50,8 @@ export default function App() {
         <Drawer.Screen name="Share" component={Share} />
         <Drawer.Screen name="Feedback" component={Feedback} />
       </Drawer.Navigator>
+      {/* Adding Toast component at the root level */}
+      <Toast />
     </NavigationContainer>
   );
 }

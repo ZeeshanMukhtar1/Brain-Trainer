@@ -11,6 +11,7 @@ import Title from '../components/Title';
 import LottieView from 'lottie-react-native';
 import {NavigationProp} from '@react-navigation/native';
 import Animated, {FadeIn, FadeOut, FadeOutDown} from 'react-native-reanimated';
+import Toast from 'react-native-toast-message';
 
 export default function Home({navigation}: {navigation: NavigationProp<any>}) {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
@@ -21,7 +22,12 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
     if (selectedDifficulty) {
       navigation.navigate('Quiz', {difficulty: selectedDifficulty});
     } else {
-      Alert.alert('Please select a difficulty level');
+      // Alert.alert('Please select a difficulty level');
+      Toast.show({
+        type: 'info',
+        text1: 'Validation Error',
+        text2: 'Please select a difficulty level.',
+      });
     }
   };
 
