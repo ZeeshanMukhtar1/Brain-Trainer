@@ -10,6 +10,7 @@ import {
 import Title from '../components/Title';
 import LottieView from 'lottie-react-native';
 import {NavigationProp} from '@react-navigation/native';
+import Animated, {FadeIn, FadeOut, FadeOutDown} from 'react-native-reanimated';
 
 export default function Home({navigation}: {navigation: NavigationProp<any>}) {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
@@ -33,7 +34,10 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
   };
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      entering={FadeIn}
+      exiting={FadeOutDown}
+      style={styles.container}>
       <View style={styles.bannerContainer}>
         <LottieView
           style={{
@@ -77,7 +81,7 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
       <TouchableOpacity style={styles.startButton} onPress={handleStartQuiz}>
         <Text style={styles.startButtonText}>Start!</Text>
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 }
 const styles = StyleSheet.create({

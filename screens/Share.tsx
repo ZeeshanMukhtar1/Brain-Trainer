@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import LottieView from 'lottie-react-native';
 import Share from 'react-native-share';
+import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
 
 const ShareApp = () => {
   const handleShare = async () => {
@@ -21,7 +22,10 @@ const ShareApp = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      entering={StretchInX}
+      exiting={StretchOutX}
+      style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>
           Spread the Knowledge, Spark the Fun!
@@ -45,7 +49,7 @@ const ShareApp = () => {
       <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
         <Text style={styles.shareButtonText}>Share</Text>
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 };
 

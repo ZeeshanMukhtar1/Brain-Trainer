@@ -47,7 +47,7 @@ export default function Results({navigation}: {navigation: any}) {
         onPress={() => {
           navigation.navigate('Home');
         }}>
-        <Text style={styles.buttonText}>Try Again</Text>
+        <Text style={styles.buttonText}>Start Over!</Text>
       </TouchableOpacity>
     </View>
   );

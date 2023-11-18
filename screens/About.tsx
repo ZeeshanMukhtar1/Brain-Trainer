@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Linking} from 'react-native';
 import BackButton from '../components/Back__btn';
+import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
 
 interface Repo {
   name: string;
@@ -48,7 +49,10 @@ export default function AboutDeveloper() {
   };
 
   return (
-    <View style={styles.main}>
+    <Animated.View
+      entering={StretchInX}
+      exiting={StretchOutX}
+      style={styles.main}>
       <Text style={styles.text}>Hey Genius Minds! 👋</Text>
       <Text style={styles.text}>
         The App Where Education Meets Entertainment! Elevate your knowledge
@@ -93,7 +97,7 @@ export default function AboutDeveloper() {
           🚀
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 

@@ -9,6 +9,7 @@ import {
 // for navitation purpose
 import {useRoute} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
+import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
 
 //  passing navigation as a prop to make use of navagating user to home screen
 export default function Info({navigation}: {navigation: any}) {
@@ -52,7 +53,10 @@ export default function Info({navigation}: {navigation: any}) {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <Animated.ScrollView
+      entering={StretchInX}
+      exiting={StretchOutX}
+      style={styles.container}>
       <View>
         {/* Animation */}
         <LottieView
@@ -79,7 +83,7 @@ export default function Info({navigation}: {navigation: any}) {
           )}
         </View>
       ))}
-    </ScrollView>
+    </Animated.ScrollView>
   );
 }
 

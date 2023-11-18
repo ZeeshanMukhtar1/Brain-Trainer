@@ -8,6 +8,7 @@ import {
   Alert,
   Linking,
 } from 'react-native';
+import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
 
 export default function Feedback() {
   const [name, setName] = useState('');
@@ -39,7 +40,10 @@ export default function Feedback() {
       });
   };
   return (
-    <View style={styles.container}>
+    <Animated.View
+      entering={StretchInX}
+      exiting={StretchOutX}
+      style={styles.container}>
       <View>
         <Text style={styles.descText}>
           Want to give us feedback? We'd love to hear from you! Please feel free
@@ -78,7 +82,7 @@ export default function Feedback() {
       <TouchableOpacity style={styles.sendButton} onPress={sendFeedback}>
         <Text style={styles.sendButtonText}>Send Feedback</Text>
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 }
 
