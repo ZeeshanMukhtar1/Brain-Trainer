@@ -8,6 +8,7 @@ import Quiz from './screens/Quiz';
 import Results from './screens/Results';
 import FAQs from './screens/Faqs';
 import About from './screens/About';
+import Share from './screens/Share';
 import SplashScreen from 'react-native-splash-screen';
 
 const Drawer = createDrawerNavigator();
@@ -44,6 +45,7 @@ export default function App() {
         <Drawer.Screen name="Brain Trainer" component={MainStackNavigator} />
         <Drawer.Screen name="FAQs" component={FAQs} />
         <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Share" component={Share} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
