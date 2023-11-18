@@ -83,8 +83,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#00bfff',
     borderRadius: 10,
     padding: 15,
+    width: '80%',
+    marginHorizontal: '10%',
     marginBottom: 40,
+    textAlign: 'center',
+    alignItems: 'center',
   },
+
   shareButtonText: {
     color: '#fff',
     fontSize: 22,
