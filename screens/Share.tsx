@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import LottieView from 'lottie-react-native';
 import Share from 'react-native-share';
 
-const shareApp = () => {
+const ShareApp = () => {
   const handleShare = async () => {
     try {
       await Share.open({
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default shareApp;
+export default ShareApp;
