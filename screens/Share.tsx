@@ -3,14 +3,14 @@ import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import LottieView from 'lottie-react-native';
 import Share from 'react-native-share';
 
-const CherDarted = () => {
+const shareApp = () => {
   const handleShare = async () => {
     try {
       await Share.open({
         title: 'Share - Brain Trainer App',
         message:
-          'Join me in unlocking the world of learning and excitement with CherDarted! Download the app now!',
-        url: 'https://dub.sh/zmVdTH4',
+          'Join me in unlocking the world of learning and excitement with Brain Trainer! Download the app now!',
+        url: 'https://dub.sh/V0csuhG',
       });
     } catch (error) {
       Alert.alert(
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CherDarted;
+export default shareApp;
