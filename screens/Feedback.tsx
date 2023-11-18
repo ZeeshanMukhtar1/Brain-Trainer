@@ -22,7 +22,7 @@ export default function Feedback() {
       Toast.show({
         type: 'error',
         text1: 'Validation Error',
-        text2: 'Please fill in all the required fields.',
+        text2: 'Uh-oh! It is important to complete all fields.',
       });
       return;
     }

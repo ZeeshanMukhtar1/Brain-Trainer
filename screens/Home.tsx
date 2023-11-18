@@ -26,7 +26,7 @@ export default function Home({navigation}: {navigation: NavigationProp<any>}) {
       Toast.show({
         type: 'info',
         text1: 'Validation Error',
-        text2: 'Please select a difficulty level.',
+        text2: ' Hold on! Please select a difficulty level.',
       });
     }
   };

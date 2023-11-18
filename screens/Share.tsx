@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import LottieView from 'lottie-react-native';
 import Share from 'react-native-share';
 import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
+import Toast from 'react-native-toast-message';
 
 const ShareApp = () => {
   const handleShare = async () => {
@@ -14,10 +15,15 @@ const ShareApp = () => {
         url: 'https://dub.sh/V0csuhG',
       });
     } catch (error) {
-      Alert.alert(
-        'Error',
-        'Unfortunately , You canceled the action: ' + (error as Error).message,
-      );
+      // Alert.alert(
+      //   'Error',
+      //   'Unfortunately , You canceled the action: ' + (error as Error).message,
+      // );
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Unfortunately, you canceled the action.',
+      });
     }
   };
 
