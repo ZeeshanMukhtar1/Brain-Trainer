@@ -8,17 +8,21 @@ import {
   Alert,
   Linking,
 } from 'react-native';
+
 import Animated, {StretchInX, StretchOutX} from 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
+import {openComposer} from 'react-native-email-link';
 
 export default function Feedback() {
-  const [name, setName] = useState('');
+  const [subject, setsubject] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [featureDescription, setFeatureDescription] = useState('');
+  const [contactInfo, setContactInfo] = useState('');
+  const [feedbacktype, setFeedbacktype] = useState('');
 
   const sendFeedback = () => {
-    // Validate if all fields are filled
-    if (!name || !emailAddress || !featureDescription) {
+    // Validate if all required fields are filled
+    if (!subject || !feedbacktype || !featureDescription) {
       Toast.show({
         type: 'error',
         text1: 'Validation Error',
@@ -27,28 +31,37 @@ export default function Feedback() {
       return;
     }
 
-    // The rest of your code remains unchanged
-    const subject = 'Feedback from App User';
-    const body = 'Please provide your feedback here.';
+    // Constructing the email parameters
+    const emailParams = {
+      to: 'zeshanmukhtar878@gmail.com',
+      subject: subject,
+      body: `Contact Information: ${contactInfo}\n\n Description : ${featureDescription}\n\nFeedback Type : ${feedbacktype}`, // Includeing the contact information and the feature description in the email body
+    };
 
-    const mailtoLink = `mailto:zeshanmukhtar0878@gmail.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
-    Linking.openURL(mailtoLink)
+    // Open the email composer
+    Linking.openURL(
+      'mailto:' +
+        emailParams.to +
+        '?subject=' +
+        emailParams.subject +
+        '&body=' +
+        emailParams.body,
+    )
       .then(() => {
-        console.log('Email client opened');
-        Alert.alert(
-          'Success',
-          'Feedback sent successfully! We will get back to you soon.',
-        );
+        console.log('Email composer opened');
+        Toast.show({
+          type: 'success',
+          text1: 'Email Sent',
+          text2: 'Thank you for your feedback!',
+        });
       })
       .catch(error => {
-        console.error('Error opening email client:', error);
-        Alert.alert(
-          'Error',
-          'Could not open email client. Please try again later.',
-        );
+        console.error('Error opening email composer:', error);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Uh-oh! Something went wrong.',
+        });
       });
   };
 
@@ -63,23 +76,31 @@ export default function Feedback() {
           to suggest any features you'd like to see in the app.
         </Text>
       </View>
-      <Text style={styles.label}>Name:</Text>
+      <Text style={styles.label}>Subject:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Enter your Name"
+        placeholder="Enter your Subject"
         placeholderTextColor="#fff"
-        onChangeText={text => setName(text)}
-        value={name}
+        onChangeText={text => setsubject(text)}
+        value={subject}
       />
-
-      <Text style={styles.label}>Email:</Text>
+      <View>
+        <Text style={styles.label}>Contact Information:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your contact information"
+          placeholderTextColor="#fff"
+          onChangeText={text => setContactInfo(text)}
+          value={contactInfo}
+        />
+      </View>
+      <Text style={styles.label}>Feedback Type:</Text>
       <TextInput
         style={styles.input}
+        placeholder="Feedback type : (bug, feature request, etc)"
         placeholderTextColor="#fff"
-        placeholder="Enter valid  Email"
-        onChangeText={text => setEmailAddress(text)}
-        value={emailAddress}
-        keyboardType="email-address"
+        onChangeText={text => setFeedbacktype(text)}
+        value={feedbacktype}
       />
 
       <Text style={styles.label}> Description:</Text>
@@ -141,5 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     marginVertical: 10,
+    textAlign: 'justify',
+    marginHorizontal: 10,
   },
 });
