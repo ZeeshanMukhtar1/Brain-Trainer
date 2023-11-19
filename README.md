@@ -6,19 +6,22 @@
 
 <h2 align="center">🧐 Features</h2>
 
-Here are some key features of the project:
-
-- Multiple Choice Questions
-- Difficulty Levels (Easy, Medium, Hard)
-- Vibrate Mode for Real-time Feedback
-- Minimalist Design
-- eye catching UI
-- iOS and Android
-- Faq Section for Common Questions
-- Dynamic Scoreboard
-- Splash Screen
-- Loading Screen
-- Real time repository statistics
+- Multiple Choice Questions 🤔
+- Difficulty Levels (Easy, Medium, Hard) 🌟
+- Vibrate Mode for Real-time Feedback 📳
+- Minimalist Design 🎨
+- iOS and Android 📱
+- FAQ Section for Common Queries ❓
+- Share App screen with various social media platforms 📤
+- Feedback Form with validation and error handling 📝✅❌
+- Dynamic Scoreboard 📊
+- Splash Screen 🚀
+- Drawer Navigation 🗂️
+- About Screen ℹ️
+- Loading Screen ⌛
+- Algorithm to generate random questions and shuffle answers 🔀
+- Real-time repository statistics 📊🔄
+- Animation on screen transitions 🎬
 
 <h2 align="center">💻 Built with</h2>
 
@@ -28,14 +31,7 @@ Technologies used in the project:
 - Javascript
 - CSS
 
-Technologies used in the project:
-
-- React Native CLI
-- React Native
-- React Navigation
-- React Native Vibration
-
-<h2 align="center">Screenshots</h2>
+<h2 align="center">📸 Screenshots</h2>
 
 <p align="center">
   <table>
@@ -44,8 +40,8 @@ Technologies used in the project:
       <td align="center"><img src="./assets/Output/home.png" alt="Home"></td>
     </tr>
        <tr>
-      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
       <td align="center"><img src="./assets/Output/error.png" alt="Error"></td>
+      <td align="center"><img src="assets/Output/loading.png" alt="Loading"></td>
     </tr>
     <tr>
       <td align="center"><img src="assets/Output/mcqs.png" alt="MCQs"></td>
@@ -56,7 +52,15 @@ Technologies used in the project:
       <td align="center"><img src="assets/Output/faqs.png" alt="FAQs"></td>
     </tr>
     <tr>
+      <td align="center"><img src="assets/Output/drawer.png" alt="Pass"></td>
       <td align="center"><img src="assets/Output/about.png" alt="Pass"></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/share.png" alt="Pass"></td>
+      <td align="center"><img src="assets/Output/feedback.png" alt="Pass"></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="assets/Output/feedback-err.png" alt="Pass"></td>
     </tr>
 
   </table>
@@ -64,7 +68,7 @@ Technologies used in the project:
 
 <h2 align="center">Releases 🚀</h2>
 
-- [v1.0.0](https://github.com/ZeeshanMukhtar1/BrainTrain-Native/releases/tag/v1.0.0) - Download apk
+- [v2.0.0](https://github.com/ZeeshanMukhtar1/Brain-Trainer/releases) - Download apk
 
 <h2 align="center"> Connect with Me 👋</h2>
 
