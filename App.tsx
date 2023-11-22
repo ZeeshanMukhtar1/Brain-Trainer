@@ -43,6 +43,7 @@ export default function App() {
           },
           headerTintColor: '#fff',
           headerTitleAlign: 'center',
+          headerShadowVisible: false,
         }}>
         <Drawer.Screen name="Brain Trainer" component={MainStackNavigator} />
         <Drawer.Screen name="FAQs" component={FAQs} />
